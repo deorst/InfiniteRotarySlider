@@ -12,29 +12,41 @@
 
 #include <JuceHeader.h>
 
-class InfiniteRotarySpinnerComponent  : public juce::Component
+class InfiniteRotarySpinnerComponent : public juce::Component
 {
 public:
+    float getValue();
+    
     InfiniteRotarySpinnerComponent();
     ~InfiniteRotarySpinnerComponent() override;
 
     void paint (juce::Graphics&) override;
     void resized() override;
     
-    float getValue();
+    
     std::function<void()> onValueChange;
+    
+    /** Underlying juce::Slider component is exposed in order to allow the user to set styles etc. */
+    juce::Slider slider;
+    
+    float getAngle();
+    float getAdjustedValue();
+        
+
+    /** To implement */
+//    void setRange(double newMin, double newMax, double newInt);
 
 private:
-    juce::Slider slider;
         
-//    One-revolution slider range.
-    const float m_sliderMin{0.0f};
-    const float m_sliderMax{100.0f};
+    const float m_oneRevolutionSliderMin{0.0f};
+    const float m_oneRevolutionSliderMax{100.0f};
     
     float m_angle{0.0f};
+    
     float m_endAngle{0.0f};
     
     float m_startValue{0.0f};
+
     bool m_startValueNeedUpdate{true};
     
     float m_value{0.0f};
@@ -44,13 +56,14 @@ private:
     float m_knobMin{40.0f};
     float m_knobMax{400.0f};
     
-    void processSliderValue(float value);
+    /** Inner logic - no need to customize anything here */
+    void m_processSliderValue(float value);
     
-    void setValueStartNeedUpdate();
-    void setAdjustedAngleEnd();
+    void m_setValueStartNeedUpdate();
     
-    float getSliderRange();
+    void m_setAdjustedAngleEnd();
     
+    float m_getSliderRange();
     
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (InfiniteRotarySpinnerComponent)
 };

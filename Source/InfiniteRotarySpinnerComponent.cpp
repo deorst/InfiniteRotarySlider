@@ -14,26 +14,30 @@
 InfiniteRotarySpinnerComponent::InfiniteRotarySpinnerComponent()
 {
     slider.setSliderStyle(juce::Slider::Rotary);
-    slider.setTextBoxStyle(juce::Slider::TextEntryBoxPosition::NoTextBox, true, 0, 0);
-    slider.setRotaryParameters(0.0f, juce::MathConstants<float>::twoPi, false);
-    slider.setRange(m_sliderMin, m_sliderMax);
     
-    slider.onValueChange = [this]{
-        processSliderValue(slider.getValue());
-    };
-    slider.onDragStart = [this]{
-        setValueStartNeedUpdate();
-    };
-    slider.onDragEnd = [this]{
-        setAdjustedAngleEnd();
-    };
-    
+    /** Hide underlying slider UI. TODO - let the user use lookAndFeel methods for that */
     slider.setColour(juce::Slider::backgroundColourId, juce::Colours::transparentBlack);
     slider.setColour(juce::Slider::thumbColourId, juce::Colours::transparentBlack);
     slider.setColour(juce::Slider::trackColourId, juce::Colours::transparentBlack);
     slider.setColour(juce::Slider::rotarySliderFillColourId, juce::Colours::transparentBlack);
     slider.setColour(juce::Slider::rotarySliderOutlineColourId, juce::Colours::transparentBlack);
 
+    /** TODO Make configurable by the user */
+    slider.setTextBoxStyle(juce::Slider::TextEntryBoxPosition::NoTextBox, true, 0, 0);
+    
+    slider.setRotaryParameters(0.0f, juce::MathConstants<float>::twoPi, false);
+    slider.setRange(m_oneRevolutionSliderMin, m_oneRevolutionSliderMax);
+    
+    slider.onValueChange = [this]{
+        m_processSliderValue(slider.getValue());
+    };
+    slider.onDragStart = [this]{
+        m_setValueStartNeedUpdate();
+    };
+    slider.onDragEnd = [this]{
+        m_setAdjustedAngleEnd();
+    };
+    
     addAndMakeVisible(slider);
 }
 
@@ -43,12 +47,11 @@ InfiniteRotarySpinnerComponent::~InfiniteRotarySpinnerComponent()
 
 void InfiniteRotarySpinnerComponent::paint (juce::Graphics& g)
 {
-    juce::Path p;
+    /** Feel free to replace this UI with your own. */
     
-    float rectW = 1.0f;
-    float rectH = 10.0f;
-    float radius = 140.0f;
+    /** Draw a circle */
     float lineThickness = 4.0f;
+    float radius = juce::jmin(getWidth(), getHeight()) * 0.5f - lineThickness;
     
     g.setColour(juce::Colours::white);
 
@@ -58,19 +61,27 @@ void InfiniteRotarySpinnerComponent::paint (juce::Graphics& g)
                   radius * 2,
                   lineThickness);
     
+    /** Add marks */
+    float rectW = 1.0f;
+    float rectH = 10.0f;
+    
+    juce::Path p;
+
     p.addRectangle((getWidth() - rectW) * 0.5f,
                    getHeight() * 0.5f - radius,
                    rectW,
                    rectH);
     
+    /** Rotate the mark to show slider's rotation */
     p.applyTransform(
         juce::AffineTransform::rotation(
-            m_angle,
+            getAngle(),
             getWidth() * 0.5,
             getHeight() * 0.5));
     
     g.fillPath(p);
     
+    /** Fill the whole circle with marks */
     for (int i{}; i < 19; ++i) {
         p.applyTransform(
             juce::AffineTransform::rotation(
@@ -80,12 +91,7 @@ void InfiniteRotarySpinnerComponent::paint (juce::Graphics& g)
         g.fillPath(p);
     }
     
-    g.setFont(juce::FontOptions(40.0f, juce::Font::FontStyleFlags::bold));
-    
-    g.drawText((juce::String) m_adjustedValue,
-               0, 0, getWidth(), getHeight() * 0.2f,
-               juce::Justification::centredTop);
-    
+    /** Add knob handle (just a spot) */
     float spotR = 10.0f;
 
     juce::Path spot;
@@ -97,7 +103,7 @@ void InfiniteRotarySpinnerComponent::paint (juce::Graphics& g)
     
     spot.applyTransform(
         juce::AffineTransform::rotation(
-            m_angle,
+            getAngle(),
             getWidth() * 0.5,
             getHeight() * 0.5));
 
@@ -106,24 +112,25 @@ void InfiniteRotarySpinnerComponent::paint (juce::Graphics& g)
 
 void InfiniteRotarySpinnerComponent::resized()
 {
+    /** Occupy all available space */
     slider.setBounds(0, 0, getWidth(), getHeight());
 }
 
-void InfiniteRotarySpinnerComponent::processSliderValue(float value) {
-//    UI part
+void InfiniteRotarySpinnerComponent::m_processSliderValue(float value) {
+    /** UI part */
     if (m_startValueNeedUpdate) {
         m_startValue = value;
         m_startValueNeedUpdate = false;
     } else {
-        m_angle = m_endAngle + (value - m_startValue) / getSliderRange() * juce::MathConstants<float>::twoPi;
+        m_angle = m_endAngle + (value - m_startValue) / m_getSliderRange() * juce::MathConstants<float>::twoPi;
     }
     
-//    Data part
+    /** Data part */
     if (abs(value - m_startValue) > m_step) {
         if (m_value > value) {
             m_adjustedValue -= m_step;
         } else if (value - m_value > m_step) {
-            if ((value - m_value) > (m_sliderMax - m_sliderMin) * 0.9f) {
+            if ((value - m_value) > (m_oneRevolutionSliderMax - m_oneRevolutionSliderMin) * 0.9f) {
                 m_adjustedValue -= m_step;
             } else {
                 m_adjustedValue += m_step;
@@ -141,18 +148,26 @@ void InfiniteRotarySpinnerComponent::processSliderValue(float value) {
     }
 }
 
-void InfiniteRotarySpinnerComponent::setValueStartNeedUpdate() {
+void InfiniteRotarySpinnerComponent::m_setValueStartNeedUpdate() {
     m_startValueNeedUpdate = true;
 }
 
-void InfiniteRotarySpinnerComponent::setAdjustedAngleEnd() {
+void InfiniteRotarySpinnerComponent::m_setAdjustedAngleEnd() {
     m_endAngle = m_angle;
 }
 
-float InfiniteRotarySpinnerComponent::getSliderRange() {
-    return m_sliderMax - m_sliderMin;
+float InfiniteRotarySpinnerComponent::m_getSliderRange() {
+    return m_oneRevolutionSliderMax - m_oneRevolutionSliderMin;
 }
 
 float InfiniteRotarySpinnerComponent::getValue(){
+    return m_adjustedValue;
+}
+
+float InfiniteRotarySpinnerComponent::getAngle() {
+    return m_angle;
+}
+
+float InfiniteRotarySpinnerComponent::getAdjustedValue() {
     return m_adjustedValue;
 }
