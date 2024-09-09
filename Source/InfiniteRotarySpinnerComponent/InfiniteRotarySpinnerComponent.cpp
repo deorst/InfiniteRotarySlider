@@ -171,3 +171,12 @@ float InfiniteRotarySpinnerComponent::getAngle() {
 float InfiniteRotarySpinnerComponent::getAdjustedValue() {
     return m_adjustedValue;
 }
+
+void InfiniteRotarySpinnerComponent::setRange(double newMinimum, double newMaximum) {
+    m_knobMin = (float) newMinimum;
+    m_knobMax = (float) newMaximum;
+}
+
+void InfiniteRotarySpinnerComponent::setValue(double newValue) {
+    m_adjustedValue = newValue;
+}

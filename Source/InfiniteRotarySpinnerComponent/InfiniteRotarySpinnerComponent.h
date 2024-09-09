@@ -17,12 +17,15 @@ class InfiniteRotarySpinnerComponent : public juce::Component
 public:
     float getValue();
     
+    /** Add third parameter double newInt - interval */
+    void setRange(double newMinimum, double newMaximum);
+    void setValue(double newValue);
+    
     InfiniteRotarySpinnerComponent();
     ~InfiniteRotarySpinnerComponent() override;
 
     void paint (juce::Graphics&) override;
     void resized() override;
-    
     
     std::function<void()> onValueChange;
     
@@ -31,10 +34,6 @@ public:
     
     float getAngle();
     float getAdjustedValue();
-        
-
-    /** To implement */
-//    void setRange(double newMin, double newMax, double newInt);
 
 private:
         
