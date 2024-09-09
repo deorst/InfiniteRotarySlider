@@ -4,11 +4,11 @@
               useAppConfig="0" addUsingNamespaceToJuceHeader="0" jucerFormatVersion="1">
   <MAINGROUP id="Ppzuft" name="InfiniteRotarySpinner">
     <GROUP id="{5CEBE9E0-C902-B0C5-A966-C3A679777B53}" name="Source">
-      <GROUP id="{DFFE88C1-2442-0916-DA46-0160C15EF67E}" name="InfiniteRotarySpinnerComponent">
-        <FILE id="HxRjwr" name="InfiniteRotarySpinnerComponent.cpp" compile="1"
-              resource="0" file="Source/InfiniteRotarySpinnerComponent.cpp"/>
-        <FILE id="GZYnyG" name="InfiniteRotarySpinnerComponent.h" compile="0"
-              resource="0" file="Source/InfiniteRotarySpinnerComponent.h"/>
+      <GROUP id="{3D8855D3-6218-7302-C66F-D214491896C6}" name="InfiniteRotarySpinnerComponent">
+        <FILE id="RhLEOc" name="InfiniteRotarySpinnerComponent.cpp" compile="1"
+              resource="0" file="Source/InfiniteRotarySpinnerComponent/InfiniteRotarySpinnerComponent.cpp"/>
+        <FILE id="f7PNfV" name="InfiniteRotarySpinnerComponent.h" compile="0"
+              resource="0" file="Source/InfiniteRotarySpinnerComponent/InfiniteRotarySpinnerComponent.h"/>
       </GROUP>
       <FILE id="XQesoa" name="Main.cpp" compile="1" resource="0" file="Source/Main.cpp"/>
       <FILE id="mwQFxL" name="MainComponent.h" compile="0" resource="0" file="Source/MainComponent.h"/>

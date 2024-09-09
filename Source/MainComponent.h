@@ -1,6 +1,6 @@
 #pragma once
 
-#include "InfiniteRotarySpinnerComponent.h"
+#include "InfiniteRotarySpinnerComponent/InfiniteRotarySpinnerComponent.h"
 #include <JuceHeader.h>
 
 //==============================================================================
