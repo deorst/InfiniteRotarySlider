@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<JUCERPROJECT id="m2UWgt" name="InfiniteRotarySpinner" projectType="guiapp"
+<JUCERPROJECT id="m2UWgt" name="InfiniteRotarySlider" projectType="guiapp"
               useAppConfig="0" addUsingNamespaceToJuceHeader="0" jucerFormatVersion="1"
-              version="0.01" companyName="Dmitriy Stadnik" companyEmail="me@deorst.com">
-  <MAINGROUP id="Ppzuft" name="InfiniteRotarySpinner">
+              version="0.1.0" companyName="Dmitriy Stadnik" companyEmail="me@deorst.com">
+  <MAINGROUP id="Ppzuft" name="InfiniteRotarySlider">
     <GROUP id="{5CEBE9E0-C902-B0C5-A966-C3A679777B53}" name="Source">
-      <GROUP id="{3D8855D3-6218-7302-C66F-D214491896C6}" name="InfiniteRotarySpinnerComponent">
-        <FILE id="RhLEOc" name="InfiniteRotarySpinnerComponent.cpp" compile="1"
-              resource="0" file="Source/InfiniteRotarySpinnerComponent/InfiniteRotarySpinnerComponent.cpp"/>
-        <FILE id="f7PNfV" name="InfiniteRotarySpinnerComponent.h" compile="0"
-              resource="0" file="Source/InfiniteRotarySpinnerComponent/InfiniteRotarySpinnerComponent.h"/>
-      </GROUP>
       <FILE id="XQesoa" name="Main.cpp" compile="1" resource="0" file="Source/Main.cpp"/>
       <FILE id="mwQFxL" name="MainComponent.h" compile="0" resource="0" file="Source/MainComponent.h"/>
       <FILE id="GPE50S" name="MainComponent.cpp" compile="1" resource="0"
             file="Source/MainComponent.cpp"/>
+      <GROUP id="{D55FD221-0073-D79B-A19C-483E89AE4B7B}" name="InfiniteRotarySliderComponent">
+        <FILE id="LaONxO" name="InfiniteRotarySliderComponent.cpp" compile="1"
+              resource="0" file="Source/InfiniteRotarySliderComponent/InfiniteRotarySliderComponent.cpp"/>
+        <FILE id="SH0S7O" name="InfiniteRotarySliderComponent.h" compile="0"
+              resource="0" file="Source/InfiniteRotarySliderComponent/InfiniteRotarySliderComponent.h"/>
+      </GROUP>
     </GROUP>
   </MAINGROUP>
   <MODULES>

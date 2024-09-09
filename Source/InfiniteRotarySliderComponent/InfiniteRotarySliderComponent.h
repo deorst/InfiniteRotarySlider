@@ -1,7 +1,7 @@
 /*
   ==============================================================================
 
-    InfiniteRotarySpinnerComponent.h
+    InfiniteRotarySliderComponent.h
     Created: 8 Sep 2024 2:58:53pm
     Author:  Dmitry Stadnik
 
@@ -12,7 +12,7 @@
 
 #include <JuceHeader.h>
 
-class InfiniteRotarySpinnerComponent : public juce::Component
+class InfiniteRotarySliderComponent : public juce::Component
 {
 public:
     float getValue();
@@ -21,8 +21,8 @@ public:
     void setRange(double newMinimum, double newMaximum);
     void setValue(double newValue);
     
-    InfiniteRotarySpinnerComponent();
-    ~InfiniteRotarySpinnerComponent() override;
+    InfiniteRotarySliderComponent();
+    ~InfiniteRotarySliderComponent() override;
 
     void paint (juce::Graphics&) override;
     void resized() override;
@@ -64,5 +64,5 @@ private:
     
     float m_getSliderRange();
     
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (InfiniteRotarySpinnerComponent)
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (InfiniteRotarySliderComponent)
 };

@@ -10,11 +10,11 @@
 #include "MainComponent.h"
 
 //==============================================================================
-class InfiniteRotarySpinnerApplication  : public juce::JUCEApplication
+class InfiniteRotarySliderApplication  : public juce::JUCEApplication
 {
 public:
     //==============================================================================
-    InfiniteRotarySpinnerApplication() {}
+    InfiniteRotarySliderApplication() {}
 
     const juce::String getApplicationName() override       { return ProjectInfo::projectName; }
     const juce::String getApplicationVersion() override    { return ProjectInfo::versionString; }
@@ -102,4 +102,4 @@ private:
 
 //==============================================================================
 // This macro generates the main() routine that launches the app.
-START_JUCE_APPLICATION (InfiniteRotarySpinnerApplication)
+START_JUCE_APPLICATION (InfiniteRotarySliderApplication)
