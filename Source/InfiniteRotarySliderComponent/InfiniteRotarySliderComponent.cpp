@@ -1,7 +1,7 @@
 /*
   ==============================================================================
 
-    InfiniteRotarySpinnerComponent.cpp
+    InfiniteRotarySliderComponent.cpp
     Created: 8 Sep 2024 2:58:53pm
     Author:  Dmitry Stadnik
 
@@ -9,9 +9,9 @@
 */
 
 #include <JuceHeader.h>
-#include "InfiniteRotarySpinnerComponent.h"
+#include "InfiniteRotarySliderComponent.h"
 
-InfiniteRotarySpinnerComponent::InfiniteRotarySpinnerComponent()
+InfiniteRotarySliderComponent::InfiniteRotarySliderComponent()
 {
     slider.setSliderStyle(juce::Slider::Rotary);
     
@@ -41,11 +41,11 @@ InfiniteRotarySpinnerComponent::InfiniteRotarySpinnerComponent()
     addAndMakeVisible(slider);
 }
 
-InfiniteRotarySpinnerComponent::~InfiniteRotarySpinnerComponent()
+InfiniteRotarySliderComponent::~InfiniteRotarySliderComponent()
 {
 }
 
-void InfiniteRotarySpinnerComponent::paint (juce::Graphics& g)
+void InfiniteRotarySliderComponent::paint (juce::Graphics& g)
 {
     /** Feel free to replace this UI with your own. */
     
@@ -110,13 +110,13 @@ void InfiniteRotarySpinnerComponent::paint (juce::Graphics& g)
     g.fillPath(spot);
 }
 
-void InfiniteRotarySpinnerComponent::resized()
+void InfiniteRotarySliderComponent::resized()
 {
     /** Occupy all available space */
     slider.setBounds(0, 0, getWidth(), getHeight());
 }
 
-void InfiniteRotarySpinnerComponent::m_processSliderValue(float value) {
+void InfiniteRotarySliderComponent::m_processSliderValue(float value) {
     /** UI part */
     if (m_startValueNeedUpdate) {
         m_startValue = value;
@@ -148,35 +148,35 @@ void InfiniteRotarySpinnerComponent::m_processSliderValue(float value) {
     }
 }
 
-void InfiniteRotarySpinnerComponent::m_setValueStartNeedUpdate() {
+void InfiniteRotarySliderComponent::m_setValueStartNeedUpdate() {
     m_startValueNeedUpdate = true;
 }
 
-void InfiniteRotarySpinnerComponent::m_setAdjustedAngleEnd() {
+void InfiniteRotarySliderComponent::m_setAdjustedAngleEnd() {
     m_endAngle = m_angle;
 }
 
-float InfiniteRotarySpinnerComponent::m_getSliderRange() {
+float InfiniteRotarySliderComponent::m_getSliderRange() {
     return m_oneRevolutionSliderMax - m_oneRevolutionSliderMin;
 }
 
-float InfiniteRotarySpinnerComponent::getValue(){
+float InfiniteRotarySliderComponent::getValue(){
     return m_adjustedValue;
 }
 
-float InfiniteRotarySpinnerComponent::getAngle() {
+float InfiniteRotarySliderComponent::getAngle() {
     return m_angle;
 }
 
-float InfiniteRotarySpinnerComponent::getAdjustedValue() {
+float InfiniteRotarySliderComponent::getAdjustedValue() {
     return m_adjustedValue;
 }
 
-void InfiniteRotarySpinnerComponent::setRange(double newMinimum, double newMaximum) {
+void InfiniteRotarySliderComponent::setRange(double newMinimum, double newMaximum) {
     m_knobMin = (float) newMinimum;
     m_knobMax = (float) newMaximum;
 }
 
-void InfiniteRotarySpinnerComponent::setValue(double newValue) {
+void InfiniteRotarySliderComponent::setValue(double newValue) {
     m_adjustedValue = newValue;
 }

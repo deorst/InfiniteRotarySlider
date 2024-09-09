@@ -1,6 +1,6 @@
 #pragma once
 
-#include "InfiniteRotarySpinnerComponent/InfiniteRotarySpinnerComponent.h"
+#include "InfiniteRotarySliderComponent/InfiniteRotarySliderComponent.h"
 #include <JuceHeader.h>
 
 //==============================================================================
@@ -20,7 +20,7 @@ public:
     void resized() override;
 
 private:
-    InfiniteRotarySpinnerComponent infiniteRotarySlider;
+    InfiniteRotarySliderComponent infiniteRotarySlider;
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (MainComponent)
 };
