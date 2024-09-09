@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <JUCERPROJECT id="m2UWgt" name="InfiniteRotarySpinner" projectType="guiapp"
-              useAppConfig="0" addUsingNamespaceToJuceHeader="0" jucerFormatVersion="1">
+              useAppConfig="0" addUsingNamespaceToJuceHeader="0" jucerFormatVersion="1"
+              version="0.01" companyName="Dmitriy Stadnik" companyEmail="me@deorst.com">
   <MAINGROUP id="Ppzuft" name="InfiniteRotarySpinner">
     <GROUP id="{5CEBE9E0-C902-B0C5-A966-C3A679777B53}" name="Source">
       <GROUP id="{3D8855D3-6218-7302-C66F-D214491896C6}" name="InfiniteRotarySpinnerComponent">
