@@ -1,5 +1,7 @@
 # `InfiniteRotarySlider` - UI component for using in JUCE projects.
 
+Built on top of the `juce::Slider` component - hence no change to the JUCE source code needed.
+
 ## Demo
 
 Open the Projucer project and run the app.
